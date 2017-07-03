@@ -17,4 +17,5 @@ public class Globals {
     static State gameState = new SelectNextUnitState();
     static Table table;
     static ArmyContainer armyContainers[] = {new ArmyContainer(), new ArmyContainer()};
+    static int playerId = 0;
 }

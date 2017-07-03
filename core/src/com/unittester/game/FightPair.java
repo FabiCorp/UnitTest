@@ -5,18 +5,18 @@ package com.unittester.game;
  * Copyright Wolfgang Wenzel
  */
 public class FightPair {
-    unitType aType;
-    unitType dType;
-    public FightPair(unitType aType,unitType dType){
+    UnitType aType;
+    UnitType dType;
+    public FightPair(UnitType aType, UnitType dType){
         this.aType = aType;
         this.dType = dType;
     }
 
-    public unitType getaType() {
+    public UnitType getaType() {
         return aType;
     }
 
-    public unitType getdType() {
+    public UnitType getdType() {
         return dType;
     }
 }

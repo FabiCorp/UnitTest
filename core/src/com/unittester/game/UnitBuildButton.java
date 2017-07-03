@@ -10,9 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  */
 
 public class UnitBuildButton extends TextButton {
-    private unitType myType;
+    private UnitType myType;
 
-    public UnitBuildButton(final unitType myType){
+    public UnitBuildButton(final UnitType myType){
         super(myType.toString(), Globals.skin, "small");
         this.myType = myType;
         setTransform(true);

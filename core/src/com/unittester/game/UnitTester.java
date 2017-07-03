@@ -10,8 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-import java.util.ArrayList;
-
 import static com.unittester.game.Globals.skin;
 
 public class UnitTester extends ApplicationAdapter {
@@ -43,7 +41,7 @@ public class UnitTester extends ApplicationAdapter {
         table.add(l);
         HorizontalGroup horizontalGroup = new HorizontalGroup();
         table.add(horizontalGroup);
-        for (unitType ut : unitType.values()) {
+        for (UnitType ut : UnitType.values()) {
              button = new UnitBuildButton(ut);
             horizontalGroup.addActor(button);
         }

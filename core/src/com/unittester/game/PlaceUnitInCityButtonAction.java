@@ -7,6 +7,7 @@ package com.unittester.game;
 public class PlaceUnitInCityButtonAction extends GameAction {
     int cityNumber;
     int player;
+    UnitType unitType;
     public PlaceUnitInCityButtonAction(int cityNumber, int player) {
         super();
         this.cityNumber = cityNumber;
@@ -15,10 +16,13 @@ public class PlaceUnitInCityButtonAction extends GameAction {
 
     @Override
     void doAction(State state) {
-        assert (state instanceof PlaceUnitInCityState);
+        assert(state instanceof PlaceUnitInCityState);
         UnitBuildButtonAction unitBuildButtonAction = ((PlaceUnitInCityState) state).getPrevious();
         System.out.println("Place Army " + unitBuildButtonAction.getUt() +
                 " player: " + player + " in city " + cityNumber);
+        // send
+        unitType = unitBuildButtonAction.getUt();
+
         ArmyContainer armyContainer = Globals.armyContainers[player];
         Army army = armyContainer.get(cityNumber);
         Unit unit = army.addUnit(unitBuildButtonAction.getUt());

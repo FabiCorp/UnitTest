@@ -1,7 +1,5 @@
 package com.unittester.game;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 
@@ -11,7 +9,7 @@ import java.util.Random;
  * Copyright Wolfgang Wenzel
  */
 
-enum unitType { Builder, Soldier, Tank, Plane };
+enum UnitType { Builder, Soldier, Tank, Plane };
 
 public class Unit {
     private static final double[][] apTable = {{2,2,2,2},
@@ -26,13 +24,13 @@ public class Unit {
     private int maxDefensePoints;
     private double experience;
     private int currentDamage; // damage in last fight
-    private unitType myType;
+    private UnitType myType;
     private ArmyModifiers modifiers;
     private static final char[] initialDefensePoints = {5,10,50,50};
 
-    public static Unit createUnitInArmy(unitType u, ArmyModifiers modifiers) { return new Unit(u,modifiers);}
+    public static Unit createUnitInArmy(UnitType u, ArmyModifiers modifiers) { return new Unit(u,modifiers);}
 
-    private Unit(unitType myType,ArmyModifiers modifiers){
+    private Unit(UnitType myType, ArmyModifiers modifiers){
         this.myType = myType;
         this.modifiers = modifiers;
         defensePoints =initialDefensePoints[myType.ordinal()];
@@ -68,7 +66,7 @@ public class Unit {
     }
 
 
-    public unitType getType() {
+    public UnitType getType() {
         return myType;
     }
 

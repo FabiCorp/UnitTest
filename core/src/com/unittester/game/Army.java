@@ -10,8 +10,7 @@ import static com.unittester.game.FightOutcome.ATTACKER;
 import static com.unittester.game.FightOutcome.DEFENDER;
 import static com.unittester.game.FightOutcome.DRAW;
 import static com.unittester.game.Unit.createUnitInArmy;
-import static com.unittester.game.unitType.*;
-import static java.util.logging.Level.FINEST;
+import static com.unittester.game.UnitType.*;
 
 /**
  * Created by Wolfgang Wenzel on 27.06.2017.
@@ -71,7 +70,7 @@ public class Army extends LinkedList<Unit> {
             return DRAW;
     }
 
-    public Unit addUnit(unitType ut) {
+    public Unit addUnit(UnitType ut) {
         Unit u = createUnitInArmy(ut,this.modifiers);
         this.add(u);
         return u;
@@ -115,7 +114,7 @@ public class Army extends LinkedList<Unit> {
         return hP;
     }
 
-    public Army selectArmyByUnit(unitType ut) {
+    public Army selectArmyByUnit(UnitType ut) {
         Army newArmy = new Army(modifiers);
         Iterator<Unit> unitIter = this.iterator();
         while (unitIter.hasNext()) {
@@ -127,7 +126,7 @@ public class Army extends LinkedList<Unit> {
     }
 
     public int[] computeNumberOfUnitsbyType() {
-        int[] number = new int[unitType.values().length];
+        int[] number = new int[UnitType.values().length];
         Arrays.fill(number,0);
         for (Unit u: this) number[u.getType().ordinal()]++;
         return number;

@@ -6,8 +6,8 @@ package com.unittester.game;
  */
 public class UnitBuildButtonAction extends GameAction {
 
-    unitType ut;
-    public UnitBuildButtonAction(unitType ut)
+    UnitType ut;
+    public UnitBuildButtonAction(UnitType ut)
     {
         this.ut = ut;
 
@@ -16,7 +16,7 @@ public class UnitBuildButtonAction extends GameAction {
     public void doAction(State state){
         Globals.gameState = new PlaceUnitInCityState(this);
     }
-    public unitType getUt() {
+    public UnitType getUt() {
         return ut;
     }
 

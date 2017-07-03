@@ -1,8 +1,5 @@
 package com.unittester.game;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
  * Created by Wolfgang Wenzel on 27.06.2017.
  * Copyright Wolfgang Wenzel
@@ -19,11 +16,11 @@ public class ArmyModifiers {
         entrenched = true;
     }
 
-    public double getAttackModifiers(unitType aType, unitType dType1) {
+    public double getAttackModifiers(UnitType aType, UnitType dType1) {
         return 1;
     }
 
-    public double getDefenseModifiers(unitType myType, unitType myType1) {
+    public double getDefenseModifiers(UnitType myType, UnitType myType1) {
         if (entrenched)
             return 1.2;
         else
