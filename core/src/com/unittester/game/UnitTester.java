@@ -62,6 +62,9 @@ public class UnitTester extends ApplicationAdapter {
             }
         }
         table.add(new StartFightButton());
+        if (!Globals.singlePlayer && Globals.playerId ==1)
+            Globals.gameState = new WaitForNextUnitState();
+
 	}
 
     public void resize (int width, int height) {
