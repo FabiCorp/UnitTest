@@ -12,14 +12,14 @@ public class ActiveUnitButton extends TextButton {
     private int      city;
     private int      player;
     private Unit     unit;
-    public ActiveUnitButton(Unit unit, int player, int city){
+    public ActiveUnitButton(final Unit unit, final int player, final int city){
         super(unit.getType().toString() + " " + unit.getTotalDefensePoiints(), Globals.skin, "small");
         this.city   = city;
         this.player = player;
         this.unit = unit;
         setTransform(true);
         setScale(Globals.buttonScale);
-        ActiveUnitButton thisButton = this;
+        final ActiveUnitButton thisButton = this;
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

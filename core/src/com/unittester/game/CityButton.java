@@ -17,7 +17,7 @@ public class CityButton extends TextButton {
     }
     private int      cityNumber;
     private int      player;
-    public CityButton(int cityNumber,int player){
+    public CityButton(final int cityNumber, final int player){
         super(armyName(cityNumber), Globals.skin, "small");
         this.cityNumber = cityNumber;
         this.player = player;
