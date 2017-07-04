@@ -19,7 +19,12 @@ public class StartFightButton extends TextButton{
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Globals.gameState = new FightStateNoUnitSelected();
+                if (Globals.singlePlayer)
+                    Globals.gameGameState = new FightGameStateNoUnitSelected();
+                else {
+                    Globals.connectionManager.sendData(this);
+                    GameState dummy = new WaitForOtherPlayerGameState();
+                }
             }
         });
     }

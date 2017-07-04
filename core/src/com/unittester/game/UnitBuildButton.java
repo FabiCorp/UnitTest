@@ -22,7 +22,8 @@ public class UnitBuildButton extends TextButton {
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Globals.gameState.respond(new UnitBuildButtonAction(myType));
+                System.out.println("Clicke on Unit" + myType + " " + Globals.gameGameState.getClass());
+                Globals.gameGameState.respond(new UnitBuildButtonAction(myType));
 
                 //int selectedUnit = player1Units.indexOf((Button) event.getTarget());
             }

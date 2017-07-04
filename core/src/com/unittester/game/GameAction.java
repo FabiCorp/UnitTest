@@ -5,5 +5,5 @@ package com.unittester.game;
  * Copyright Wolfgang Wenzel
  */
 public abstract class GameAction {
-    abstract void doAction(State state);
+    abstract void doAction(GameState gameState);
 };

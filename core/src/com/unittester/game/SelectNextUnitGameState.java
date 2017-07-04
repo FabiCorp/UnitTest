@@ -5,16 +5,18 @@ package com.unittester.game;
  * Copyright Wolfgang Wenzel
  */
 
-public class SelectNextUnitState implements State {
-    public SelectNextUnitState() {
-        System.out.println("State is SelectNext Unit");
+public class SelectNextUnitGameState extends GameState {
+    public SelectNextUnitGameState() {
+        // System.out.println("GameState is SelectNext Unit");
     }
     @Override
     public void respond(GameAction action) {
+        System.out.println("Action is: " + action.getClass());
         if (action instanceof UnitBuildButtonAction)
             action.doAction(this);
         else if (action instanceof ActiveUnitButtonAction)
             action.doAction(this);
+
     }
 }
 

@@ -1,15 +1,16 @@
 package com.unittester.game;
-
-import com.unittester.game.network.ConnectionManager;
+import java.io.Serializable;
 
 /**
  * Created by Wolfgang Wenzel on 02.07.2017.
  * Copyright Wolfgang Wenzel
  */
-public class PlaceUnitInCityButtonAction extends GameAction {
+public class PlaceUnitInCityButtonAction extends GameAction implements Serializable {
     int cityNumber;
     int player;
     UnitType unitType;
+    static final long serialVersionUID = 42L;
+
     public PlaceUnitInCityButtonAction(int cityNumber, int player) {
         super();
         this.cityNumber = cityNumber;
@@ -18,28 +19,26 @@ public class PlaceUnitInCityButtonAction extends GameAction {
     }
 
     @Override
-    void doAction(State state) {
-        if (state instanceof PlaceUnitInCityState) {
-            UnitBuildButtonAction unitBuildButtonAction = ((PlaceUnitInCityState) state).getPrevious();
-            System.out.println("Place Army " + unitBuildButtonAction.getUt() +
-                    " player: " + player + " in city " + cityNumber);
-
+    void doAction(GameState gameState) {
+        if (gameState instanceof PlaceUnitInCityGameState) {
+            UnitBuildButtonAction unitBuildButtonAction = ((PlaceUnitInCityGameState) gameState).getPrevious();
             unitType = unitBuildButtonAction.getUt();
-            // send
             placeUnit();
-            Globals.connectionManager.sendData(this);
-            if (Globals.singlePlayer)
-                Globals.gameState = new SelectNextUnitState();
-            else
-                Globals.gameState = new WaitForNextUnitState();
-        } else if (state instanceof WaitForNextUnitState) {
-            placeUnit();
-            Globals.gameState = new SelectNextUnitState();
-        }
 
+            Globals.connectionManager.sendData(this);
+
+            Globals.gameGameState = new WaitForOtherPlayerGameState();
+
+        } else if (gameState instanceof WaitForOtherPlayerGameState) {
+            if (!Globals.singlePlayer)
+                placeUnit();
+            Globals.gameGameState = new SelectNextUnitGameState();
+        }
     }
 
     private void placeUnit() {
+        System.out.println("Place Army " + unitType +
+                " player: " + player + " in city " + cityNumber);
         ArmyContainer armyContainer = Globals.armyContainers[player];
         Army army = armyContainer.get(cityNumber);
         Unit unit = army.addUnit(unitType);

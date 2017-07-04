@@ -17,18 +17,18 @@ public class ActiveUnitButtonAction extends GameAction {
             this.player = player;
         }
 
-        public void doAction(State state){
+        public void doAction(GameState gameState){
 
-            if (state instanceof PlaceUnitInCityState) {
+            if (gameState instanceof PlaceUnitInCityGameState) {
                 ArmyContainer armyContainer = Globals.armyContainers[player];
                 Army army = armyContainer.get(city);
                 army.remove(unit);
                 armyContainer.horizontalGroups.get(city).removeActor(button);
-                Globals.gameState = new SelectNextUnitState();
-            } else if (state instanceof FightStateNoUnitSelected) {
-                Globals.gameState = new FightStateUnitSelected(this);
-            } else if (state instanceof FightStateUnitSelected){
-                ActiveUnitButtonAction other = ((FightStateUnitSelected) state).firstUnit;
+                Globals.gameGameState = new SelectNextUnitGameState();
+            } else if (gameState instanceof FightGameStateNoUnitSelected) {
+                Globals.gameGameState = new FightGameStateUnitSelected(this);
+            } else if (gameState instanceof FightGameStateUnitSelected){
+                ActiveUnitButtonAction other = ((FightGameStateUnitSelected) gameState).firstUnit;
                 System.out.println("Fighting Player " + player + " City " + city + " Unit: " + unit.getType() +
                 " with player " + other.player + " City " + other.city + " Unit " + other.unit.getType());
 
@@ -50,7 +50,7 @@ public class ActiveUnitButtonAction extends GameAction {
                 other.button.setText(other.unit.getType() + " " + other.unit.getTotalDefensePoiints());
 
 
-                Globals.gameState = new FightStateNoUnitSelected();
+                Globals.gameGameState = new FightGameStateNoUnitSelected();
             }
 
 

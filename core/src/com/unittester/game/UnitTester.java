@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.unittester.game.network.DuplexConnectionManager;
+import com.unittester.game.network.SinglePlayerConnectionManager;
 
 import static com.unittester.game.Globals.skin;
 
@@ -18,10 +20,14 @@ public class UnitTester extends ApplicationAdapter {
 	private Table table;
 	private TextButton button;
 
+    public UnitTester(int player) {
+
+    }
 
 
-	@Override
+    @Override
 	public void create () {
+
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 
@@ -61,10 +67,18 @@ public class UnitTester extends ApplicationAdapter {
                 table.row();
             }
         }
-        table.add(new StartFightButton());
-        if (!Globals.singlePlayer && Globals.playerId ==1)
-            Globals.gameState = new WaitForNextUnitState();
 
+        if (!Globals.singlePlayer) {
+            Globals.connectionManager = new DuplexConnectionManager("192.168.0.15");
+            if (Globals.playerId ==1) { // player 0 starts
+                GameState dummy = new WaitForOtherPlayerGameState();
+            }
+            else  // player 0 has the right to start the fight
+                table.add(new StartFightButton());
+        }
+        else {
+            Globals.connectionManager = new SinglePlayerConnectionManager();
+        }
 	}
 
     public void resize (int width, int height) {
@@ -78,6 +92,10 @@ public class UnitTester extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+
+        if (Globals.gameGameState instanceof WaitForOtherPlayerGameState) {
+            ((WaitForOtherPlayerGameState) Globals.gameGameState).doStuff();
+        }
 	}
 	
 	@Override

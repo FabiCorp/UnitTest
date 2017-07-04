@@ -1,33 +1,10 @@
 package com.unittester.game.network;
 
-
 /**
- * @author Fabian Wenzel
- *         Created by Fabian Wenzel on 27.06.2017.
+ * Created by Wolfgang Wenzel on 04.07.2017.
+ * Copyright Wolfgang Wenzel
  */
-public class ConnectionManager {
-
-    private ClientSocket clientSocket;
-    private ServerSocket serverSocket;
-
-    public ConnectionManager(String ip) {
-        startServer();
-        clientSocket = new ClientSocket(ip);
-    }
-
-    private void startServer() {
-        Thread thread = new Thread(() -> serverSocket = new ServerSocket());
-        thread.start();
-    }
-
-    public Object getData() {
-        return serverSocket.receive();
-    }
-
-    public void sendData(Object data) {
-        clientSocket.send(data);
-    }
-
-
-
+public abstract class ConnectionManager {
+    public abstract Object getData();
+    public abstract void sendData(Object data);
 }

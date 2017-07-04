@@ -27,7 +27,7 @@ public class CityButton extends TextButton {
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Globals.gameState.respond(new PlaceUnitInCityButtonAction(cityNumber,player));
+                Globals.gameGameState.respond(new PlaceUnitInCityButtonAction(cityNumber,player));
             }
         });
     }

@@ -23,7 +23,7 @@ public class ActiveUnitButton extends TextButton {
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Globals.gameState.respond(new ActiveUnitButtonAction(thisButton,unit,player,city));
+                Globals.gameGameState.respond(new ActiveUnitButtonAction(thisButton,unit,player,city));
             }
         });
     }

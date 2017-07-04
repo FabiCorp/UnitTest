@@ -10,11 +10,10 @@ public class UnitBuildButtonAction extends GameAction {
     public UnitBuildButtonAction(UnitType ut)
     {
         this.ut = ut;
-
     }
 
-    public void doAction(State state){
-        Globals.gameState = new PlaceUnitInCityState(this);
+    public void doAction(GameState gameState){
+        Globals.gameGameState = new PlaceUnitInCityGameState(this);
     }
     public UnitType getUt() {
         return ut;
